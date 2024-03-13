@@ -1,4 +1,7 @@
+node_modules
 dist
 build
-.eslintrc.js
-.prettierrc.js
+.eslintrc.json
+.prettierrc.json
+.husky
+package-lock.json
