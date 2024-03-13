@@ -1,0 +1,20 @@
+{
+  "[dockercompose]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  },
+  "[json][jsonc][jsonl][astro][html][css][markdown][javascript][javascriptreact][typescript][typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "editor.formatOnSave": true,
+  "eslint.codeActionsOnSave.mode": "all",
+  "eslint.enable": true,
+  "eslint.format.enable": true,
+  "eslint.validate": [
+    "javascript",
+    "typescript"
+  ]
+}

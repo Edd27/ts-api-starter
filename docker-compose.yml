@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  db:
+    container_name: library-db
+    image: "postgres"
+    restart: always
+    shm_size: 120mb
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: "library"
