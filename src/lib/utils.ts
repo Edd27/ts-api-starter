@@ -28,7 +28,5 @@ export const validateRequest =
   };
 
 export const commonValidations = {
-  id: z
-    .string()
-    .refine((data) => typeof data !== "string", "ID must be a string value"),
+  id: z.string(),
 };
