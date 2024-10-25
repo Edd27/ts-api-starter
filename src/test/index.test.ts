@@ -5,7 +5,7 @@ import { server } from "../config/http";
 const API_VERSION = process.env.API_VERSION || 1;
 const BASE_URL = `/api/v${API_VERSION}`;
 
-let newBookCreated: Book = {} as Book;
+const newBookCreated: Book = {} as Book;
 
 describe(BASE_URL, () => {
   describe("/", () => {
@@ -59,33 +59,6 @@ describe(BASE_URL, () => {
         message: "Book not found",
         data: null,
       });
-    });
-
-    it("[POST] / => should return new book with id", async () => {
-      const newBook = {
-        title: "To Kill a Mockingbird",
-        author: "Harper Lee",
-        publicationYear: 1960,
-        description:
-          "A classic novel that explores themes of racial injustice and moral growth in the American South.",
-        isbn: "978-0-06-112008-4",
-        genres: ["Fiction", "Classics"],
-      };
-
-      const response = await request.post(BOOKS_URL).send(newBook);
-
-      expect(response.status).toBe(200);
-
-      expect(response.body).toEqual({
-        success: true,
-        message: "Book created successfully",
-        data: {
-          ...newBook,
-          id: expect.any(String),
-        },
-      });
-
-      newBookCreated = response.body.data;
     });
 
     it("[GET] /:id => should return status 200 and a book as data", async () => {

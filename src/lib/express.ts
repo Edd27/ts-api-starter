@@ -1,17 +1,17 @@
 import cors from "cors";
-import express from "express";
+import express, { Application } from "express";
 import morgan from "morgan";
+import errorHandler from "../middlewares/error-handler";
 import router from "../routes";
-import { errorHandler } from "../utils/error-handler";
 import { corsOptions } from "./cors";
 
-const app = express();
+const app: Application = express();
 
-app.use(cors(corsOptions));
-app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors(corsOptions));
+app.use(morgan("dev"));
 app.use(router);
-app.use(errorHandler);
+app.use(errorHandler());
 
 export default app;

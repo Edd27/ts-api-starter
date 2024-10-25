@@ -6,7 +6,7 @@
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": false,
-    "outDir": "./dist",
+    "outDir": "./build",
     "resolveJsonModule": true,
     "rootDir": "./",
     "skipLibCheck": true,

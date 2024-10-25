@@ -34,22 +34,32 @@ It provides a set of essential files to help you maintain a clean and organized 
 ## Getting started
 
 1. Clone this repository to your local development environment.
+
    ```bash
    git clone https://github.com/Edd27/ts-api-starter.git
    ```
-2. Create a docker container with PostgreSQL.
+
+2. Create a `.env` file from `.env.example`, then edit with your values.
+
+3. Create a docker container with PostgreSQL.
+
    ```bash
    docker compose up -d
+
    ```
-3. Install the project dependencies:
+
+4. Install the project dependencies:
+
    ```bash
    npm install
    ```
-4. Create a `.env` file from `.env.example`, then edit with your values.
+
 5. Push prisma schema to the database.
+
    ```bash
-   npm run prisma:push
+   npx prisma db push
    ```
+
 6. Run server on dev mode:
 
    ```bash

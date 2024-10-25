@@ -1,18 +1,32 @@
-import { Router } from "express";
-import {
-  createBook,
-  getAllBooks,
-  getBookById,
-} from "../controllers/book.controller";
-import {
-  getBookByIdValidations,
-  registerBookValidations,
-} from "../dto/book.dto";
+import { OpenAPIRegistry } from "@asteasolutions/zod-to-openapi";
+import express, { type Router } from "express";
+import { z } from "zod";
+import { createApiResponse } from "../config/open-api-res-builders";
+import { BookController } from "../controllers/book.controller";
+import { validateRequest } from "../lib/utils";
+import { BookSchema, GetBookSchema } from "../models/book.model";
 
-const router = Router();
+export const bookRegistry = new OpenAPIRegistry();
 
-router.get("/", getAllBooks);
-router.get("/:id", getBookByIdValidations, getBookById);
-router.post("/", registerBookValidations, createBook);
+export const bookRouter: Router = express.Router();
 
-export default router;
+bookRegistry.register("Book", BookSchema);
+
+bookRegistry.registerPath({
+  method: "get",
+  path: "/books",
+  tags: ["Book"],
+  responses: createApiResponse(z.array(BookSchema), "Success"),
+});
+
+bookRouter.get("/", BookController.getBooks);
+
+bookRegistry.registerPath({
+  method: "get",
+  path: "/books/{id}",
+  tags: ["Book"],
+  request: { params: GetBookSchema.shape.params },
+  responses: createApiResponse(BookSchema, "Success"),
+});
+
+bookRouter.get("/:id", validateRequest(GetBookSchema), BookController.getBook);

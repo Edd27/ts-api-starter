@@ -1,14 +1,12 @@
-version: "3"
-
 services:
   db:
-    container_name: library-db
+    container_name: ${DATABASE_CONTAINER_NAME}
     image: "postgres"
     restart: always
     shm_size: 120mb
     ports:
-      - "5433:5432"
+      - "${DATABASE_PORT}:5432"
     environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
-      POSTGRES_DB: "library"
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
