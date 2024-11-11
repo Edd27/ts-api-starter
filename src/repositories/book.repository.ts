@@ -13,4 +13,9 @@ export class BookRepository {
     });
     return book;
   }
+
+  async createAsync(book: Book): Promise<Book> {
+    const newBook = await prisma.book.create({ data: book });
+    return newBook;
+  }
 }

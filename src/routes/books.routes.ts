@@ -30,3 +30,12 @@ bookRegistry.registerPath({
 });
 
 bookRouter.get("/:id", validateRequest(GetBookSchema), BookController.getBook);
+
+bookRegistry.registerPath({
+  method: "post",
+  path: "/books",
+  tags: ["Book"],
+  responses: createApiResponse(BookSchema, "Success"),
+});
+
+bookRouter.post("/", validateRequest(BookSchema), BookController.createBook);

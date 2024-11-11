@@ -53,6 +53,28 @@ export class BookService {
       );
     }
   }
+
+  async createAsync(book: Book): Promise<ServiceResponse<Book | null>> {
+    try {
+      const newBook = await this.bookRepository.createAsync(book);
+      if (!newBook) {
+        return ServiceResponse.failure(
+          "Book not created",
+          null,
+          StatusCodes.BAD_REQUEST,
+        );
+      }
+      return ServiceResponse.success<Book>("Book created", book);
+    } catch (ex) {
+      // const errorMessage = `Error creating book, ${(ex as Error).message}`;
+      // logger.error(errorMessage);
+      return ServiceResponse.failure(
+        "An error occurred while creating book.",
+        null,
+        StatusCodes.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
 }
 
 export const bookService = new BookService();

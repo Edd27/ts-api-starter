@@ -13,4 +13,10 @@ export class BookController {
     const serviceResponse = await bookService.findById(id);
     handleServiceResponse(serviceResponse, res);
   }
+
+  public static async createBook(req: Request, res: Response) {
+    const book = req.body;
+    const serviceResponse = await bookService.createAsync(book);
+    handleServiceResponse(serviceResponse, res);
+  }
 }
