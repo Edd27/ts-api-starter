@@ -2,10 +2,38 @@
   "[dockercompose]": {
     "editor.defaultFormatter": "ms-azuretools.vscode-docker"
   },
-  "[json][jsonc][jsonl][astro][html][css][markdown][javascript][javascriptreact][typescript][typescriptreact]": {
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonl]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
     "source.fixAll.eslint": "explicit",
     "source.organizeImports": "explicit"
   },
@@ -13,8 +41,5 @@
   "eslint.codeActionsOnSave.mode": "all",
   "eslint.enable": true,
   "eslint.format.enable": true,
-  "eslint.validate": [
-    "javascript",
-    "typescript"
-  ]
+  "eslint.validate": ["javascript", "typescript"]
 }
