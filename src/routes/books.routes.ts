@@ -4,7 +4,11 @@ import { z } from "zod";
 import { createApiResponse } from "../config/open-api-res-builders";
 import { BookController } from "../controllers/book.controller";
 import { validateRequest } from "../lib/utils";
-import { BookSchema, GetBookSchema } from "../models/book.model";
+import {
+  BookSchema,
+  CreateBookSchema,
+  GetBookSchema,
+} from "../models/book.model";
 
 export const bookRegistry = new OpenAPIRegistry();
 
@@ -38,4 +42,8 @@ bookRegistry.registerPath({
   responses: createApiResponse(BookSchema, "Success"),
 });
 
-bookRouter.post("/", validateRequest(BookSchema), BookController.createBook);
+bookRouter.post(
+  "/",
+  validateRequest(CreateBookSchema),
+  BookController.createBook,
+);

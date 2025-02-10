@@ -13,10 +13,10 @@ export const handleServiceResponse = (
 export const validateRequest =
   (schema: ZodSchema) => (req: Request, res: Response, next: NextFunction) => {
     try {
-      schema.parse({ body: req.body, query: req.query, params: req.params });
+      schema.parse({ ...req.body, ...req.query, params: req.params });
       next();
     } catch (err) {
-      const errorMessage = `Invalid input: ${(err as ZodError).errors.map((e) => e.message).join(", ")}`;
+      const errorMessage = `Invalid input: ${(err as ZodError).errors.map((e) => `${e.path.map((path) => path).join(".")}: ${e.message}`).join(", ")}`;
       const statusCode = StatusCodes.BAD_REQUEST;
       const serviceResponse = ServiceResponse.failure(
         errorMessage,
@@ -28,5 +28,5 @@ export const validateRequest =
   };
 
 export const commonValidations = {
-  id: z.string(),
+  id: z.string().cuid(),
 };

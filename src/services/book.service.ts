@@ -1,5 +1,6 @@
 import { Book } from "@prisma/client";
 import { StatusCodes } from "http-status-codes";
+import { logger } from "../lib/pino";
 import { ServiceResponse } from "../lib/service-response";
 import { BookRepository } from "../repositories/book.repository";
 
@@ -22,8 +23,8 @@ export class BookService {
       }
       return ServiceResponse.success<Book[]>("Books found", books);
     } catch (e) {
-      // const errorMessage = `Error finding all books: $${(e as Error).message}`;
-      // logger.error(errorMessage);
+      const errorMessage = `Error finding all books: $${(e as Error).message}`;
+      logger.error(errorMessage);
       return ServiceResponse.failure(
         "An error occurred while retrieving books.",
         null,
@@ -43,9 +44,9 @@ export class BookService {
         );
       }
       return ServiceResponse.success<Book>("Book found", book);
-    } catch (ex) {
-      // const errorMessage = `Error finding book with id ${id}:, ${(ex as Error).message}`;
-      // logger.error(errorMessage);
+    } catch (e) {
+      const errorMessage = `Error finding book with id ${id}:, ${(e as Error).message}`;
+      logger.error(errorMessage);
       return ServiceResponse.failure(
         "An error occurred while finding book.",
         null,
@@ -65,9 +66,9 @@ export class BookService {
         );
       }
       return ServiceResponse.success<Book>("Book created", book);
-    } catch (ex) {
-      // const errorMessage = `Error creating book, ${(ex as Error).message}`;
-      // logger.error(errorMessage);
+    } catch (e) {
+      const errorMessage = `Error creating book, ${(e as Error).message}`;
+      logger.error(errorMessage);
       return ServiceResponse.failure(
         "An error occurred while creating book.",
         null,

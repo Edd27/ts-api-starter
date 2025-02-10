@@ -1,10 +1,10 @@
-import "./config/env";
+import { ENV } from "./config/env";
 import { server } from "./config/http";
 
 function bootstrap() {
-  const PORT = process.env.PORT || 3000;
-  const HOST = process.env.HOST || "localhost";
-  const NODE_ENV = process.env.NODE_ENV || "development";
+  const PORT = ENV.PORT;
+  const HOST = ENV.HOST;
+  const NODE_ENV = ENV.NODE_ENV || "development";
 
   const onCloseSignal = () => {
     server.close(() => {

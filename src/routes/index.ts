@@ -1,13 +1,11 @@
 import express from "express";
-import { openAPIRouter } from "../config/open-api-router";
+import { ENV } from "../config/env";
 import { bookRouter } from "./books.routes";
-import { healthCheckRouter } from "./healtk-check.routes";
+import { healthCheckRouter } from "./health-check.routes";
 
-const API_VERSION = process.env.API_VERSION ?? 1;
+const API_VERSION = ENV.API_VERSION;
 
 const router = express.Router();
-
-router.use(openAPIRouter);
 
 router.get("/api/v1", (_req, res) => {
   res.json({

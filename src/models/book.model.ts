@@ -17,6 +17,15 @@ export const BookSchema = z.object({
   genres: z.array(z.string()),
 });
 
+export const CreateBookSchema = z.object({
+  description: z.string().optional(),
+  title: z.string(),
+  author: z.string(),
+  publicationYear: z.number(),
+  isbn: z.string(),
+  genres: z.array(z.string()),
+});
+
 export const GetBookSchema = z.object({
   params: z.object({ id: commonValidations.id }),
 });

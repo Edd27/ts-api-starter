@@ -4,7 +4,7 @@ import {
 } from "@asteasolutions/zod-to-openapi";
 
 import { bookRegistry } from "../routes/books.routes";
-import { healthCheckRegistry } from "../routes/healtk-check.routes";
+import { healthCheckRegistry } from "../routes/health-check.routes";
 
 export function generateOpenAPIDocument() {
   const registry = new OpenAPIRegistry([healthCheckRegistry, bookRegistry]);

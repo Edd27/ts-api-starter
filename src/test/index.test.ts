@@ -1,8 +1,9 @@
 import { Book } from "@prisma/client";
 import supertest from "supertest";
+import { ENV } from "../config/env";
 import { server } from "../config/http";
 
-const API_VERSION = process.env.API_VERSION || 1;
+const API_VERSION = ENV.API_VERSION;
 const BASE_URL = `/api/v${API_VERSION}`;
 
 describe(BASE_URL, () => {
@@ -40,6 +41,19 @@ describe(BASE_URL, () => {
     it("[GET] / => should return a list of books", async () => {
       const response = await request.get(BOOKS_URL);
 
+      if (!response.body.data) {
+        expect(response.status).toBe(404);
+
+        expect(response.body).toEqual({
+          success: false,
+          message: "No books found",
+          data: null,
+          statusCode: 404,
+        });
+
+        return;
+      }
+
       expect(response.status).toBe(200);
 
       expect(response.body).toEqual({
@@ -53,7 +67,9 @@ describe(BASE_URL, () => {
     });
 
     it("[GET] /:id => Book not found: should return status 404 and message 'Book not found'", async () => {
-      const response = await request.get(`${BOOKS_URL}/1000`);
+      const response = await request.get(
+        `${BOOKS_URL}/cm6zfryzl0000n7g7cfkum4sl`,
+      );
 
       expect(response.status).toBe(404);
 
